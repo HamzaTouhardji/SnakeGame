@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/game.css">
+    <title>Snake GAME</title>
+  </head>
+  <body>
+
+    <!--On definit nos images-->
+    <div style="display:none;">
+      <img id="source" src="./img/tete.jpg">
+      <img id="loser" src="./img/loser.png">
+    </div>
+
+    <audio id="audioPlayer">
+      <source src="./sound/partiePerdue.wav">
+    </audio>
+    <audio id="piece">
+      <source src="./sound/piece.wav">
+    </audio>
+
+
+    <div class=""></div>
+      <div class="mt-5 mb-5 col-sm-12">
+        <div class=" container text-center">
+          <a href="./index.html"  type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            HOME
+          </a>
+
+          <a href="#" id="niveau1" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            FACILE
+          </a>
+
+          <a href="#" id="niveau2" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            MOYEN
+          </a>
+          
+          <a href="#" id="niveau3" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            DIFFICILE
+          </a>          
+      
+        </div>
+      </div>
+    </div>
+
+    <canvas id="canvas" width="1000" height="700" style="border:20px double #02899b; background-color: #ffffff;     padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 800px;"></canvas>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100vh;
+  font-family: 'Montserrat';
+  background: #000000;
+  color: #fff;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+
+.menu {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.img-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%);
+  background: url('../img/img-2.png') no-repeat;
+  background-position: center;
+  background-size: 100%;
+  width: 0;
+  height: 1000px;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  z-index: 2;
+  background: #ec1417;
+}
+
+.first {
+  top: 0;
+}
+
+.second {
+  top: 33.3%
+}
+
+.third {
+  top: 66.6%;
+}
+
+@media(max-height: 720px) {
+  .img-1 {
+    top: 240px;
+    right: 330px;
+    height: 480px;
+  }
+}
+
+.myButton {
+  transform: translateY(-50%);
+  background: url('./img/play.png') no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+.text1 {
+  color: white;
+  text-decoration: none;
+  font-size:4em;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.text2 {
+  color: white;
+  text-decoration: none;
+  font-size:40px;
+  position: absolute;
+  text-align: center;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.play{
+  margin-bottom: 10%;
+}
