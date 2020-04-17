@@ -1,9 +1,9 @@
-// Variable d'environement
+// variable d'environement
 window.onload = function () {
     canvas = document.querySelector("canvas");
-    var niv1 = document.getElementById('niveau1');
-    var niv2 = document.getElementById('niveau2');
-    var niv3 = document.getElementById('niveau3');
+    let niv1 = document.getElementById('niveau1');
+    let niv2 = document.getElementById('niveau2');
+    let niv3 = document.getElementById('niveau3');
 
     niv1.addEventListener("click",function(e){
         niv1.parentNode.removeChild(niv1);
@@ -61,7 +61,7 @@ function loadlevel(nblevel){
         wall = level.walls;
         PommeX = Math.trunc(Math.random()*canvas.width/largeur)*largeur;
         PommeY = Math.trunc(Math.random()*canvas.height/hauteur)*hauteur;
-
+        musicGame = document.getElementById("music_game");
         //la taille de la pomme et la vitesse de deplacement en fonction du niv
         configurationLevel(numLevel)
         document.addEventListener("keydown",keyboard);
@@ -71,19 +71,28 @@ function loadlevel(nblevel){
     });
 }
 
+function message() {
+    alert("Pour une meilleure expérience de jeu, vous pouvez activer le son!");
+}
+
 function draw(){ 
 
     /****************Les images***************** */
-    var block = new Image();
+    let block = new Image();
     block.src = "./img/block.png";
-    
-    var tete = new Image();
+    let tailleImg = block.height/2;
+
+    let tete = new Image();
     tete.src = "./img/tete.jpg";
+
+    let background = document.getElementById("lamp")
+    let pat = ctx.createPattern(background, 'repeat');
     
     let number = Math.floor(Math.random() * 5) + 1
     switch (numLevel) {
         case 1:
-            ctx.fillStyle = "#fff";
+            ctx.fillStyle = pat;
+            ctx.fill();
             break;
         case 2:
             colorBackground(number);
@@ -97,15 +106,13 @@ function draw(){
 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    for(var i = 0; i < wall.length; i++){
+    for(let i = 0; i < wall.length; i++){
         ctx.beginPath();
-        var mur = ctx.drawImage(block, wall[i][0], wall[i][1]);
-        ctx.fillStyle = "blue";
-        ctx.fill();
+        let mur = ctx.drawImage(block, wall[i][0], wall[i][1]);
     }
 
-    for(var i = 0; i < wall.length; i++){
-        if (x === wall[i][0] && y === wall[i][1]) {
+    for(let i = 0; i < wall.length; i++){
+        if (wall[i][0] >= x-tailleImg && wall[i][1] >= y-tailleImg && wall[i][0] <= x+tailleImg && wall[i][1] <= y+tailleImg) {
             mort();
         }
     }
@@ -125,7 +132,7 @@ function draw(){
     ctx.fillStyle = "green";
 
     //la couleur de la pomme, elle change de aleatoirement 
-    for(var i=0; i<trace.length; i++) {
+    for(let i=0; i<trace.length; i++) {
         if(i == trace.length-1){
             switch(randomColor){
             case 0:
@@ -140,13 +147,17 @@ function draw(){
         }
         ctx.fillRect(trace[i].x,trace[i].y, largeur-3, hauteur-3);
     }
-
+        
+        musicGame.loop = true;
+        musicGame.play();
 
     //Si le snake mange une pomme
     if(x == PommeX && y == PommeY){
         score += 10 + 2 * ((tailleTrace - tailleInitTrace)/sautTrace);
-        var player = document.querySelector('#piece');
+        let player = document.querySelector('#piece');
         player.play();
+        player.volume = 0.1;
+
         //pn change de couleur
         randomColor ++;
         randomColor %= 3;
@@ -167,14 +178,17 @@ function draw(){
     ctx.fill();
     ctx.closePath();
 
-
     // Affichage du score
     ctx.font = '40px Arial';
-    ctx.fillStyle = '#000';
+    if ( numLevel === 1 ) {
+        ctx.fillStyle = '#fff';
+    }else{
+        ctx.fillStyle = '#000';
+    }
     ctx.fillText('Score: ' + score, 50, 50); 
 
     if(trace.length > 2){
-        for(var i=0; i<trace.length-1; i++) {
+        for(let i=0; i<trace.length-1; i++) {
             if(trace[i].x == trace[trace.length-1].x && trace[i].y==trace[trace.length-1].y){
                 collisionTrace = true;
             break
@@ -212,8 +226,8 @@ function colorBackground(number) {
 }
 
 function positionAleatoirePomme() {
-    var date = new Date();
-    var seconde = date.getSeconds();
+    let date = new Date();
+    let seconde = date.getSeconds();
     //la pomme bouge aleatoirement et choisi une position au bout 1 seconde
     if (seconde%10 === 0) {
         PommeX = Math.trunc(Math.random()*canvas.width/largeur)*largeur;
@@ -226,7 +240,7 @@ function mort() {
     //La partie est finie, le ctx a depassé une des bordure du canva. On recharge la parge 
 
     //Afichage de l'image
-    var loser = new Image();
+    let loser = new Image();
     loser.src = "./img/loser.png";
     ctx.drawImage(loser, 150, 150);
 
@@ -239,7 +253,10 @@ function mort() {
     depX=0;
     depY=0;
 
-    var player = document.querySelector('#audioPlayer');
+    musicGame.pause();
+musicGame.currentTime = 0;
+
+    let player = document.querySelector('#audioPlayer');
     player.play();
     setTimeout(() => {window.location.reload(false); }, 2000);
 }

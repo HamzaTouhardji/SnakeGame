@@ -8,24 +8,21 @@
   </head>
   <body>
 
-    <!--On definit nos images-->
-    <div style="display:none;">
-      <img id="source" src="./img/tete.jpg">
-      <img id="loser" src="./img/loser.png">
-    </div>
-
     <audio id="audioPlayer">
       <source src="./sound/partiePerdue.wav">
     </audio>
     <audio id="piece">
       <source src="./sound/piece.wav">
     </audio>
+    <audio id="music_game">
+      <source src="./sound/game_music.mp3">
+    </audio>
 
 
     <div class=""></div>
       <div class="mt-5 mb-5 col-sm-12">
         <div class=" container text-center">
-          <a href="./index.html"  type="button">
+          <a onclick="myFunction()" href="./index.html"  type="button">
             <span></span>
             <span></span>
             <span></span>
@@ -33,7 +30,7 @@
             HOME
           </a>
 
-          <a href="#" id="niveau1" type="button">
+          <a onclick="message()" href="#" id="niveau1" type="button">
             <span></span>
             <span></span>
             <span></span>
@@ -41,7 +38,7 @@
             FACILE
           </a>
 
-          <a href="#" id="niveau2" type="button">
+          <a onclick="message()" href="#" id="niveau2" type="button">
             <span></span>
             <span></span>
             <span></span>
@@ -49,7 +46,7 @@
             MOYEN
           </a>
           
-          <a href="#" id="niveau3" type="button">
+          <a onclick="message()" href="#" id="niveau3" type="button">
             <span></span>
             <span></span>
             <span></span>
